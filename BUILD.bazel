@@ -1,0 +1,23 @@
+load("@bazel_gazelle//:def.bzl", "gazelle")
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+# gazelle:prefix github.com/bazel/golang/test
+gazelle(name = "gazelle")
+
+go_binary(
+    name = "main",
+    embed = [":main_library"],
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "main_library",
+    srcs = ["main.go"],
+    importpath = "github.com/bazel/golang/test",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//utils",
+        "@com_github_rs_zerolog//:zerolog",
+        "@com_github_rs_zerolog//log",
+    ],
+)
