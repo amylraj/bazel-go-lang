@@ -20,14 +20,38 @@ http_archive(
     ],
 )
 
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "b1e80761a8a8243d03ebca8845e9cc1ba6c82ce7c5179ce2b295cd36f7e394bf",
+    urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.25.0/rules_docker-v0.25.0.tar.gz"],
+)
+
+http_archive(
+    name = "bazel_deps",
+    strip_prefix = "bazel-deps-0.4.1",
+    urls = ["https://github.com/jmhodges/bazel-deps/archive/refs/tags/0.4.1.zip"],
+)
+
+http_archive(
+    name = "rules_license",
+    sha256 = "26d4021f6898e23b82ef953078389dd49ac2b5618ac564ade4ef87cced147b38",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_license/releases/download/1.0.0/rules_license-1.0.0.tar.gz",
+        "https://github.com/bazelbuild/rules_license/releases/download/1.0.0/rules_license-1.0.0.tar.gz",
+    ],
+)
+
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
+load("@io_bazel_rules_docker//repositories:repositories.bzl", container_repositories = "repositories")
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
-
-
 go_rules_dependencies()
+
 go_register_toolchains(version = "1.23.1")
+
 gazelle_dependencies()
+
+container_repositories()
 
 go_repository(
     name = "com_github_cockroachdb_apd_v3",
@@ -41,6 +65,20 @@ go_repository(
     importpath = "github.com/rs/zerolog",
     sum = "h1:1cU2KZkvPxNyfgEmhHAz/1A9Bz+llsdYzklWFzgp0r8=",
     version = "v1.33.0",
+)
+
+go_repository(
+    name = "go_uber_org_zap",
+    importpath = "go.uber.org/zap",
+    sum = "h1:aJMhYGrd5QSmlpLMr2MftRKl7t8J8PTZPA732ud/XR8=",
+    version = "v1.27.0",
+)
+
+go_repository(
+    name = "go_uber_org_multierr",
+    importpath = "go.uber.org/multierr",
+    sum = "h1:blXXJkSxSSfBVBlC76pxqeO+LN3aDfLQo+309xJstO0=",
+    version = "v1.11.0",
 )
 
 go_repository(
@@ -99,18 +137,6 @@ go_repository(
     version = "v0.26.0",
 )
 
-# ### Go External Dependencies - BEGINS HERE
-# go_repository(
-#     name = "lib_golang_zerolog",
-#     importpath = "github.com/rs/zerolog",
-#     sum = "h1:1cU2KZkvPxNyfgEmhHAz/1A9Bz+llsdYzklWFzgp0r8=",
-#     version = "v1.33.0",
-# )
+load("@io_bazel_rules_docker//go:image.bzl", _go_image_repos = "repositories")
 
-# go_repository(
-#     name = "lib_golang_cockroachdb_apb",
-#     importpath = "github.com/cockroachdb/apd/v3",
-#     sum = "h1:U+8j7t0axsIgvQUqthuNm82HIrYXodOV2iWLWtEaIwg=",
-#     version = "v3.2.1",
-# )
-# ### Go External Dependencies - Ends Here
+_go_image_repos()

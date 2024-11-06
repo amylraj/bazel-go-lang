@@ -11,8 +11,9 @@ import (
 
 func main() {
 	defer func() {
-		if recover() != nil {
-			log.Error().Msg("Well, I tried to divide by Zero")
+		err := recover()
+		if err != nil {
+			log.Print("Recovering from Panic: ", err)
 		}
 	}()
 

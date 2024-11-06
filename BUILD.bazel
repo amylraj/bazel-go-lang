@@ -1,5 +1,8 @@
 load("@bazel_gazelle//:def.bzl", "gazelle")
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+load("@rules_license//rules_gathering:generate_sbom.bzl", "generate_sbom")
+
 
 # gazelle:prefix github.com/bazel/golang/test
 gazelle(name = "gazelle")
@@ -20,4 +23,23 @@ go_library(
         "@com_github_rs_zerolog//:zerolog",
         "@com_github_rs_zerolog//log",
     ],
+)
+
+go_image(
+    name = "main_image",
+    embed = [":main_library"],
+    deps = [
+        "@go_uber_org_zap//:zap",
+        "@go_uber_org_multierr//:multierr"
+    ],
+    goarch = "amd64",
+    goos = "linux",
+    pure = "on",
+    visibility = ["//visibility:public"],
+)
+
+generate_sbom(
+    name = "main_sbom",
+    deps = [":main_library"],
+    out = "write_sbom.txt",
 )
