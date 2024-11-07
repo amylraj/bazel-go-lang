@@ -26,3 +26,26 @@ go.work.sum
 
 # Bazel Output
 bazel-*
+
+# IDE Stuff
+/.aswb/
+/.bazelbsp/
+/.cache/
+/.classpath
+/.clwb/
+/.factorypath
+/.idea/
+/.ijwb/
+/.project
+/.settings
+/.vscode/
+.eclipse/
+.settings/
+.classpath
+.project
+eclipse-*bin/
+/bazel.iml
+
+
+# macOS-specific excludes
+.DS_Store

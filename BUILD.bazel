@@ -32,9 +32,6 @@ go_image(
         "@go_uber_org_zap//:zap",
         "@go_uber_org_multierr//:multierr"
     ],
-    goarch = "amd64",
-    goos = "linux",
-    pure = "on",
     visibility = ["//visibility:public"],
 )
 

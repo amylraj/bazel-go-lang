@@ -54,6 +54,48 @@ gazelle_dependencies()
 container_repositories()
 
 go_repository(
+    name = "com_github_davecgh_go_spew",
+    importpath = "github.com/davecgh/go-spew",
+    sum = "h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=",
+    version = "v1.1.1",
+)
+
+go_repository(
+    name = "com_github_kr_text",
+    importpath = "github.com/kr/text",
+    sum = "h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=",
+    version = "v0.2.0",
+)
+
+go_repository(
+    name = "com_github_pmezard_go_difflib",
+    importpath = "github.com/pmezard/go-difflib",
+    sum = "h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=",
+    version = "v1.0.0",
+)
+
+go_repository(
+    name = "com_github_stretchr_testify",
+    importpath = "github.com/stretchr/testify",
+    sum = "h1:w7B6lhMri9wdJUVmEZPGGhZzrYTPvgJArz7wNPgYKsk=",
+    version = "v1.8.1",
+)
+
+go_repository(
+    name = "in_gopkg_yaml_v3",
+    importpath = "gopkg.in/yaml.v3",
+    sum = "h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=",
+    version = "v3.0.1",
+)
+
+go_repository(
+    name = "org_uber_go_goleak",
+    importpath = "go.uber.org/goleak",
+    sum = "h1:2K3zAYmnTNqV73imy9J1T3WC+gmCePx2hEGkimedGto=",
+    version = "v1.3.0",
+)
+
+go_repository(
     name = "com_github_cockroachdb_apd_v3",
     importpath = "github.com/cockroachdb/apd/v3",
     sum = "h1:U+8j7t0axsIgvQUqthuNm82HIrYXodOV2iWLWtEaIwg=",
