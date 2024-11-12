@@ -3,7 +3,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 go_library(
     name = "utils",
     srcs = ["main.go"],
-    importpath = "github.com/bazel/golang/test/utils",
+    importpath = "bazel/go/test/utils",
     visibility = ["//visibility:public"],
     deps = ["@com_github_cockroachdb_apd_v3//:apd"],
 )

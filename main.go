@@ -1,9 +1,8 @@
 package main
 
 import (
+	"bazel/go/test/utils"
 	"fmt"
-
-	"github.com/bazel/golang/test/utils"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
